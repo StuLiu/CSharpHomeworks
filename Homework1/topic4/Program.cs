@@ -10,6 +10,7 @@ namespace topic4
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
