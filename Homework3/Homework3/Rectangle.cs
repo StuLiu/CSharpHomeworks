@@ -13,12 +13,13 @@ namespace Homework3
         private double width;
 
         public Rectangle(double length, double width) {
-            if (length > 0 && width > 0) {
-                this.length = length;
-                this.width = width;
-            }
-            else {
-                throw new ArgumentOutOfRangeException("Rectangle Width or Length");
+            Length = length;
+            Width = width;
+        }
+
+        public string Info {
+            get {
+                return $"Rectangle:length={length},width={width}.";
             }
         }
 
@@ -42,12 +43,8 @@ namespace Homework3
             }
         }
         
-        public double Area() {
+        public double GetArea() {
             return length * width;
-        }
-
-        public string info() {
-            return $"Rectangle:length={length},width={width}.";
         }
     }
 }

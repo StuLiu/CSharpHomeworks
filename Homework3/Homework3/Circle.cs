@@ -11,30 +11,27 @@ namespace Homework3
         private double radius;
         
         public Circle(double radius) {
-            if (radius > 0)
-                this.radius = radius;
-            else
-                throw new ArgumentOutOfRangeException("Circle Radius");
+            Radius = radius;
         }
 
-        public double Radius
-        {
+        public string Info {
+            get {
+                return $"Circle:radius={radius}.";
+            }
+        }
+
+        public double Radius {
             get { return radius; }
-            set
-            {
-                if (radius > 0)
+            set {
+                if (value > 0)
                     radius = value;
                 else
                     throw new ArgumentOutOfRangeException("Circle Radius");
             }
         }
 
-        public double Area() {
+        public double GetArea() {
             return  Math.PI * radius * radius;  
-        }
-
-        public string info() {
-            return $"Circle:radius={radius}.";
         }
     }
 }

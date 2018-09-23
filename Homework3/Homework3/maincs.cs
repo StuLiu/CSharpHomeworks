@@ -16,7 +16,7 @@ namespace Homework3
                 shapes.Add(sf.createSquare(10));
                 shapes.Add(sf.createRectangle(6, 8));
                 foreach (Shape shape in shapes)
-                    Console.WriteLine(shape.info() + $"area={shape.Area()}");
+                    Console.WriteLine(shape.Info + $"area={shape.GetArea()}");
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
             } 

@@ -11,28 +11,27 @@ namespace Homework3
         private double width;
 
         public Square(double width) {
-            if (width > 0) 
-                this.width = width; 
-            else
-                throw new ArgumentOutOfRangeException("Square Width");
+            Width = width;
+        }
+
+        public string Info {
+            get {
+                return $"Square:width={width}.";
+            }
         }
 
         public double Width {
             get { return width; }
             set {
                 if (value > 0) 
-                    this.width = value; 
+                    width = value; 
                 else 
                     throw new ArgumentOutOfRangeException("Square Width");
             }
         }
         
-        public double Area() { 
+        public double GetArea() { 
             return width * width;
-        }
-
-        public string info() {
-            return $"Square:width={width}.";
         }
     }
 }

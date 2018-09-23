@@ -19,9 +19,8 @@ namespace Homework3
                 edge1 = a;
                 edge2 = b;
                 edge3 = c;
-            }
-            else {
-                throw new ArgumentOutOfRangeException("Triangle Edge1 or Edge2 or Edge3");
+            } else {
+                throw new ArgumentOutOfRangeException("Triangle Edges");
             }
         }
 
@@ -37,8 +36,7 @@ namespace Homework3
 
         public double Edge2 {
             get { return edge2; }
-            set
-            {
+            set {
                 if (judge(value, edge1, edge3))
                     edge2 = value;
                 else
@@ -54,16 +52,20 @@ namespace Homework3
                     throw new ArgumentOutOfRangeException("Triangle Edge3");
             }
         }
-        
-        public double Area() {
+
+        public string Info {
+            get {
+                return $"Triangle:edge1={edge1},edge2={edge2},edge3={edge3}.";
+            }
+        }
+
+        public double GetArea() {
             double p = (edge1 + edge2 + edge3) / 2;
             return Math.Sqrt(p * (p - edge1) * (p - edge2) * (p - edge3));
         }
 
-        public string info() {
-            return $"Triangle:edge1={edge1},edge2={edge2},edge3={edge3}.";
-        }
-
+        // judge three edges of a triangle whether they are legal or not
+        // if legal return true, otherwise return false
         private bool judge(double a, double b, double c) {
             if (a <= 0 || b <= 0 || c <= 0)
                 return false;
