@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Homework3
 {
-    class Program
+    interface Shape
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("this is third homework;");
-        }
+        double Area();
     }
 }
