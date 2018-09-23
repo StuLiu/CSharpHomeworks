@@ -8,6 +8,10 @@ namespace Homework3
 {
     interface Shape
     {
+        // calculate the area of the shape
         double Area();
+
+        // get base information of the shape
+        string info();
     }
 }

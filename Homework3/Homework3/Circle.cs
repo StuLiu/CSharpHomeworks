@@ -9,13 +9,32 @@ namespace Homework3
     class Circle : Shape
     {
         private double radius;
+        
+        public Circle(double radius) {
+            if (radius > 0)
+                this.radius = radius;
+            else
+                throw new ArgumentOutOfRangeException("Circle Radius");
+        }
 
-        public Circle(double radius) { this.radius = radius; }
+        public double Radius
+        {
+            get { return radius; }
+            set
+            {
+                if (radius > 0)
+                    radius = value;
+                else
+                    throw new ArgumentOutOfRangeException("Circle Radius");
+            }
+        }
 
         public double Area() {
-            double area = Math.PI * radius * radius;
-            Console.WriteLine($"Circle:radius={radius},are={area}.");
-            return area;
+            return  Math.PI * radius * radius;  
+        }
+
+        public string info() {
+            return $"Circle:radius={radius}.";
         }
     }
 }

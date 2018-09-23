@@ -6,23 +6,70 @@ using System.Threading.Tasks;
 
 namespace Homework3
 {
-    class Triangle : Shape
-    {
+    class Triangle : Shape {
+        
         private double edge1;
+
         private double edge2;
+
         private double edge3;
 
         public Triangle(double a, double b, double c) {
-            edge1 = a;
-            edge2 = b;
-            edge3 = c;
+            if (judge(a, b, c)) {
+                edge1 = a;
+                edge2 = b;
+                edge3 = c;
+            }
+            else {
+                throw new ArgumentOutOfRangeException("Triangle Edge1 or Edge2 or Edge3");
+            }
         }
 
+        public double Edge1 {
+            get { return edge1; }
+            set {
+                if (judge(value, edge2, edge3))
+                    edge1 = value;
+                else
+                    throw new ArgumentOutOfRangeException("Triangle Edge1");
+            }
+        }
+
+        public double Edge2 {
+            get { return edge2; }
+            set
+            {
+                if (judge(value, edge1, edge3))
+                    edge2 = value;
+                else
+                    throw new ArgumentOutOfRangeException("Triangle Edge2");
+            }
+        }
+        public double Edge3 {
+            get { return edge3; }
+            set {
+                if (judge(value, edge1, edge2))
+                    edge3 = value;
+                else
+                    throw new ArgumentOutOfRangeException("Triangle Edge3");
+            }
+        }
+        
         public double Area() {
             double p = (edge1 + edge2 + edge3) / 2;
-            double area = Math.Sqrt(p * (p - edge1) * (p - edge2) * (p - edge3));
-            Console.WriteLine($"Triangle:edge1={edge1},edge2={edge2},edge3={edge3},area={area}.");
-            return area;
+            return Math.Sqrt(p * (p - edge1) * (p - edge2) * (p - edge3));
+        }
+
+        public string info() {
+            return $"Triangle:edge1={edge1},edge2={edge2},edge3={edge3}.";
+        }
+
+        private bool judge(double a, double b, double c) {
+            if (a <= 0 || b <= 0 || c <= 0)
+                return false;
+            if (a + b <= c || b + c <= a || a + c <= b)
+                return false;
+            return true;
         }
     }
 }

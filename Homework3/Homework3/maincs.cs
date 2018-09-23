@@ -6,19 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Homework3
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            ShapeFactory sf = new ShapeFactory();
-            ArrayList  shapes = new ArrayList();
-            shapes.Add(sf.createTriangle(3, 4, 5));
-            shapes.Add(sf.createCircle(10));
-            shapes.Add(sf.createSquare(1.5));
-            shapes.Add(sf.createRectangle(6, 8));
-            foreach(Shape shape in shapes) {
-                shape.Area();
-            }
+    class Program {
+        static void Main(string[] args) {
+            try {
+                ShapeFactory sf = new ShapeFactory();
+                ArrayList shapes = new ArrayList();
+                shapes.Add(sf.createTriangle(3, 4, 5));
+                shapes.Add(sf.createCircle(10));
+                shapes.Add(sf.createSquare(10));
+                shapes.Add(sf.createRectangle(6, 8));
+                foreach (Shape shape in shapes)
+                    Console.WriteLine(shape.info() + $"area={shape.Area()}");
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
+            } 
         }
     }
 }

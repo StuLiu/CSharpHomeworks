@@ -6,18 +6,33 @@ using System.Threading.Tasks;
 
 namespace Homework3
 {
-    class Square : Shape
-    {
+    class Square : Shape {
+
         private double width;
 
         public Square(double width) {
-            this.width = width;
+            if (width > 0) 
+                this.width = width; 
+            else
+                throw new ArgumentOutOfRangeException("Square Width");
         }
 
-        public double Area() {
-            double area = width * width;
-            Console.WriteLine($"Square:width={width},area={area}.");
-            return area;
+        public double Width {
+            get { return width; }
+            set {
+                if (value > 0) 
+                    this.width = value; 
+                else 
+                    throw new ArgumentOutOfRangeException("Square Width");
+            }
+        }
+        
+        public double Area() { 
+            return width * width;
+        }
+
+        public string info() {
+            return $"Square:width={width}.";
         }
     }
 }

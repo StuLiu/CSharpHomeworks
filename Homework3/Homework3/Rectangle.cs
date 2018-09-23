@@ -9,17 +9,45 @@ namespace Homework3
     class Rectangle : Shape
     {
         private double length;
+
         private double width;
 
         public Rectangle(double length, double width) {
-            this.length = length;
-            this.width = width;
+            if (length > 0 && width > 0) {
+                this.length = length;
+                this.width = width;
+            }
+            else {
+                throw new ArgumentOutOfRangeException("Rectangle Width or Length");
+            }
         }
 
+        public double Length {
+            get { return length; }
+            set {
+                if (value > 0)
+                    length = value;
+                else
+                    throw new ArgumentOutOfRangeException("Rectangle Length");
+            }
+        }
+
+        public double Width {
+            get { return width; }
+            set {
+                if (value > 0)
+                    width = value;
+                else
+                    throw new ArgumentOutOfRangeException("Rectangle Width");
+            }
+        }
+        
         public double Area() {
-            double area = width * length;
-            Console.WriteLine($"Rectangle:length={length},width={width},area={area}.");
-            return area;
+            return length * width;
+        }
+
+        public string info() {
+            return $"Rectangle:length={length},width={width}.";
         }
     }
 }
