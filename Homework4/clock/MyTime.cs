@@ -6,23 +6,31 @@ using System.Threading.Tasks;
 
 namespace clock {
 
-    // the time obj
+    /// <summary>
+    /// the time obj
+    /// </summary>
     class MyTime {
 
-        private int hour;
-
-        private int minute;
-
-        private int second;
-
+        private int hour; 
+        
+        private int minute; 
+       
+        private int second; 
+        
         private int id;
 
+        /// <summary>
+        /// constuctor
+        /// </summary>
         public MyTime(int hour = 0, int minute = 0, int second = 0) {
             Hour = hour;
             Minute = minute;
             Second = second;
         }
 
+        /// <summary>
+        /// hour : 0-23
+        /// </summary>
         public int Hour {
             get { return hour; }
             set {
@@ -34,6 +42,9 @@ namespace clock {
             }
         }
 
+        /// <summary>
+        /// minute 0-59
+        /// </summary>
         public int Minute {
             get { return minute; }
             set {
@@ -45,6 +56,9 @@ namespace clock {
             }
         }
 
+        /// <summary>
+        /// second 0-59
+        /// </summary>
         public int Second {
             get { return second; }
             set {
@@ -55,7 +69,9 @@ namespace clock {
                 }
             }
         }
-
+        /// <summary>
+        /// mytime identifier : calculate by hour,minute and second
+        /// </summary>
         public int Id {
             get { return hour * 10000 + minute * 100 + second; }
         }

@@ -6,27 +6,37 @@ using System.Threading.Tasks;
 
 namespace ordertest
 {
+    /// <summary>
+    /// Customer the man who orders goods.
+    /// </summary>
     class Customer {
-        private uint customerId;
-        private string customerName;
 
+        /// <summary>
+        /// Customer constructor
+        /// </summary>
+        /// <param name="id">customer id</param>
+        /// <param name="name">customer name </param>
         public Customer(uint id, string name) {
             CustomerId = id;
             CustomerName = name;
         }
 
-        public uint CustomerId {
-            get { return customerId; }
-            set { customerId = value; }
-        }
+        /// <summary>
+        /// customer's identifier
+        /// </summary>
+        public uint CustomerId { get; set; }
 
-        public string CustomerName {
-            get { return customerName; } 
-            set { customerName = value; }
-        }
+        /// <summary>
+        /// customer's name
+        /// </summary>
+        public string CustomerName { get; set; }
 
-        public string Info {
-            get { return $"customerId:{customerId}, CustomerName:{CustomerName}"; }
+        /// <summary>
+        /// override ToString
+        /// </summary>
+        /// <returns>string:message of the Customer object</returns>
+        public override string ToString() {
+            return $"customerId:{CustomerId}, CustomerName:{CustomerName}";
         }
     }
 }

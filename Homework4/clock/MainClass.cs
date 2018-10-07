@@ -5,8 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace clock {
+    /// <summary>
+    /// Main class
+    /// </summary>
     class MainClass {
-
+        /// <summary>
+        /// Main function
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args) {
             try {
                 MyClock clock = new MyClock();

@@ -5,32 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ordertest {
-
+    /// <summary>
+    /// Goods class:the message of goods
+    /// </summary>
     class Goods {
-
-        private uint goodsId;
-
-        private string goodsName;
 
         private double goodsValue;
 
+        /// <summary>
+        /// Goods constuctor
+        /// </summary>
+        /// <param name="id">goods id</param>
+        /// <param name="name">goods name</param>
+        /// <param name="value">>goods value</param>
         public Goods(uint id, string name, double value) {
-            Id = id;
-            Name = name;
-            Value = value;
+            GoodsId = id;
+            GoodsName = name;
+            GoodsValue = value;
         }
 
-        public uint Id {
-            get { return goodsId; }
-            set { goodsId = value; }
-        }
+        /// <summary>
+        /// property : goods id
+        /// </summary>
+        public uint GoodsId { get; set; }
 
-        public string Name {
-            get { return goodsName; }
-            set { goodsName = value; }
-        }
+        /// <summary>
+        /// property : goods name
+        /// </summary>
+        public string GoodsName { get; set; }
 
-        public double Value {
+        /// <summary>
+        /// property : goods value
+        /// </summary>
+        public double GoodsValue {
             get { return goodsValue; }
             set {
                 if (value >= 0)
@@ -40,8 +47,12 @@ namespace ordertest {
             }
         }
 
-        public string Info {
-            get { return $"goodsId:{goodsId}, goodsName:{goodsName}, goodsValue:{goodsValue}"; }
+        /// <summary>
+        /// override ToString
+        /// </summary>
+        /// <returns>string:message of the Goods object</returns>
+        public override string ToString() {
+            return $"goodsId:{GoodsId}, goodsName:{GoodsName}, goodsValue:{GoodsValue}";
         }
     }
 }

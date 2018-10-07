@@ -6,63 +6,76 @@ using System.Threading.Tasks;
 
 namespace ordertest {
 
+    /// <summary>
+    /// Order class : all orderDetails
+    /// to record each goods and its quantity in this ordering
+    /// </summary>
     class Order {
 
-        private uint orderId;
+        private Dictionary<uint, OrderDetail> orderDetailsDict;
 
-        private Customer customer;
-
-        private Dictionary<uint, OrderDetails> orderDetailsDict;
-
+        /// <summary>
+        /// Order constructor
+        /// </summary>
+        /// <param name="orderId">order id</param>
+        /// <param name="customer">who orders goods</param>
         public Order(uint orderId, Customer customer) {
             OrderId = orderId;
             Customer = customer;
-            orderDetailsDict = new Dictionary<uint, OrderDetails>();
+            orderDetailsDict = new Dictionary<uint, OrderDetail>();
         }
+        /// <summary>
+        /// order id
+        /// </summary>
+        public uint OrderId { get; set; }
 
-        public uint OrderId {
-            get { return orderId; } 
-            set { orderId = value; }
-        }
+        /// <summary>
+        /// the man who orders goods
+        /// </summary>
+        public Customer Customer { get; set; }
 
-        public Customer Customer {
-            get { return customer; }
-            set { customer = value; }
-        }
-
-        // add new orderDetails to order
-        public void AddOrderDetails(OrderDetails orderDetails) {
-            if (orderDetailsDict.ContainsKey(orderDetails.OrderDetailsId))  {
-                throw new Exception($"orderDetails-{orderDetails.OrderDetailsId} is already existed!");
+        /// <summary>
+        /// add new orderDetail to order
+        /// </summary>
+        /// <param name="orderDetail">the new orderDetail which will be added</param>
+        public void AddOrderDetails(OrderDetail orderDetail) {
+            if (orderDetailsDict.ContainsKey(orderDetail.OrderDetailId))  {
+                throw new Exception($"orderDetails-{orderDetail.OrderDetailId} is already existed!");
             } else {
-                orderDetailsDict[orderDetails.OrderDetailsId] = orderDetails;
+                orderDetailsDict[orderDetail.OrderDetailId] = orderDetail;
             }
         }
 
-        // remove orderDetails by orderDetailsId
-        public void RemoveOrderDetails(uint orderDetailsId) {
-            if (orderDetailsDict.ContainsKey(orderDetailsId)) {
-                orderDetailsDict.Remove(orderDetailsId);
+        /// <summary>
+        /// remove orderDetail by orderDetailId from order
+        /// </summary>
+        /// <param name="orderDetailId">id of the orderDetail which will be removed</param>
+        public void RemoveOrderDetails(uint orderDetailId) {
+            if (orderDetailsDict.ContainsKey(orderDetailId)) {
+                orderDetailsDict.Remove(orderDetailId);
             } else {
-                throw new Exception($"orderDetails-{orderDetailsId} is not existed!");
+                throw new Exception($"orderDetails-{orderDetailId} is not existed!");
             }
         }
 
-        // get all orderDetails in this order
-        public List<OrderDetails> GetAllOrderDetails() {
+        /// <summary>
+        /// get all orderDetails in this order
+        /// </summary>
+        /// <returns>List<OrderDetail></returns>
+        public List<OrderDetail> QueryAllOrderDetails() {
             return orderDetailsDict.Values.ToList();
         }
-        
-        public string Info {
-            get {
-                string result = "================================================================================\n";
-                result += $"orderId:{orderId}\tcustomer:({customer.Info})";
-                foreach(OrderDetails od in orderDetailsDict.Values.ToList()) {
-                    result += "\n    " + od.Info;
-                }
-                result += "\n================================================================================";
-                return result;
-            }
+
+        /// <summary>
+        /// override ToString
+        /// </summary>
+        /// <returns>string:message of the Order object</returns>
+        public override string ToString() {
+            string result = "================================================================================\n";
+            result += $"orderId:{OrderId}, customer:({Customer})";
+            orderDetailsDict.Values.ToList().ForEach(od => result += "\n\t" + od);
+            result += "\n================================================================================";
+            return result;
         }
     }
 }

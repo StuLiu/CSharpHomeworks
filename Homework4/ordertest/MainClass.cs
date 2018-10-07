@@ -16,9 +16,9 @@ namespace ordertest {
                 Goods eggs = new Goods(2, "eggs", 4.99);
                 Goods apple = new Goods(3, "apple", 5.59);
 
-                OrderDetails orderDetails1 = new OrderDetails(1, apple, 8);
-                OrderDetails orderDetails2 = new OrderDetails(2, eggs, 2);
-                OrderDetails orderDetails3 = new OrderDetails(3, milk, 1);
+                OrderDetail orderDetails1 = new OrderDetail(1, apple, 8);
+                OrderDetail orderDetails2 = new OrderDetail(2, eggs, 2);
+                OrderDetail orderDetails3 = new OrderDetail(3, milk, 1);
 
                 Order order1 = new Order(1, customer1);
                 Order order2 = new Order(2, customer2);
@@ -37,28 +37,28 @@ namespace ordertest {
                 os.AddOrder(order3);
 
                 Console.WriteLine("GetAllOrders");
-                List<Order> orders = os.GetAllOrders();
+                List<Order> orders = os.QueryAllOrders();
                 foreach (Order od in orders)
-                    Console.WriteLine(od.Info);
+                    Console.WriteLine(od.ToString());
                 Console.WriteLine("");
 
                 Console.WriteLine("GetOrdersByCustomerName:'Customer2'");
                 orders = os.GetOrdersByCustomerName("Customer2");
                 foreach (Order od in orders)
-                    Console.WriteLine(od.Info);
+                    Console.WriteLine(od.ToString());
                 Console.WriteLine("");
 
                 Console.WriteLine("GetOrdersByGoodsName:'apple'");
-                orders = os.GetOrdersByGoodsName("apple");
+                orders = os.QueryOrdersByGoodsName("apple");
                 foreach (Order od in orders)
-                    Console.WriteLine(od.Info);
+                    Console.WriteLine(od.ToString());
                 Console.WriteLine("");
                 
                 Console.WriteLine("Remove order(id=2) and qurey all");
                 os.RemoveOrder(2);
-                orders = os.GetAllOrders();
+                orders = os.QueryAllOrders();
                 foreach (Order od in orders)
-                    Console.WriteLine(od.Info);
+                    Console.WriteLine(od.ToString());
                 Console.WriteLine("");
 
             } catch (Exception e) {
