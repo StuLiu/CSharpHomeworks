@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ordertest {
 
-    /// <summary>
-    /// Order class : all orderDetails
-    /// to record each goods and its quantity in this ordering
-    /// </summary>
+    /**
+     * Order class : order 
+     * to record each goods and its quantity in this ordering
+     **/
     class Order {
 
+        // uint : orderDetail's id, OrderDetail : OrderDetail obj
         private Dictionary<uint, OrderDetail> orderDetailsDict;
 
         /// <summary>
@@ -35,10 +36,10 @@ namespace ordertest {
         public Customer Customer { get; set; }
 
         /// <summary>
-        /// add new orderDetail to order
+        /// add a new orderDetail to order
         /// </summary>
         /// <param name="orderDetail">the new orderDetail which will be added</param>
-        public void AddOrderDetails(OrderDetail orderDetail) {
+        public void AddOrderDetail(OrderDetail orderDetail) {
             if (orderDetailsDict.ContainsKey(orderDetail.OrderDetailId))  {
                 throw new Exception($"orderDetails-{orderDetail.OrderDetailId} is already existed!");
             } else {
@@ -50,7 +51,7 @@ namespace ordertest {
         /// remove orderDetail by orderDetailId from order
         /// </summary>
         /// <param name="orderDetailId">id of the orderDetail which will be removed</param>
-        public void RemoveOrderDetails(uint orderDetailId) {
+        public void RemoveOrderDetail(uint orderDetailId) {
             if (orderDetailsDict.ContainsKey(orderDetailId)) {
                 orderDetailsDict.Remove(orderDetailId);
             } else {

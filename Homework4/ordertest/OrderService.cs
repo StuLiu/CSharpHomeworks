@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ordertest {
-    /// <summary>
-    /// OrderService:provide ordering service,
-    /// like add order, remove order, query order and so on
-    /// 实现添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询)
-    /// </summary>
-    class OrderService { 
 
+    /**
+     * OrderService:provide service for users about ordering,
+     * like add order, remove order, query order and so on
+     * 实现添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询)
+     * */
+    class OrderService {
+
+        // uint : orderId, Order : Order obj
         private Dictionary<uint, Order> orderDict;
+
         /// <summary>
         /// OrderService constructor
         /// </summary>
@@ -107,6 +110,6 @@ namespace ordertest {
             }
         }
 
-        /*other edit function with write in the future.*/
+        /*other update function will write in the future.*/
     }
 }

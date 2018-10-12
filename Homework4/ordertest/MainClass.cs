@@ -23,13 +23,13 @@ namespace ordertest {
                 Order order1 = new Order(1, customer1);
                 Order order2 = new Order(2, customer2);
                 Order order3 = new Order(3, customer2);
-                order1.AddOrderDetails(orderDetails1);
-                order1.AddOrderDetails(orderDetails2);
-                order1.AddOrderDetails(orderDetails3);
+                order1.AddOrderDetail(orderDetails1);
+                order1.AddOrderDetail(orderDetails2);
+                order1.AddOrderDetail(orderDetails3);
                 //order1.AddOrderDetails(orderDetails3);
-                order2.AddOrderDetails(orderDetails2);
-                order2.AddOrderDetails(orderDetails3);
-                order3.AddOrderDetails(orderDetails3);
+                order2.AddOrderDetail(orderDetails2);
+                order2.AddOrderDetail(orderDetails3);
+                order3.AddOrderDetail(orderDetails3);
 
                 OrderService os = new OrderService();
                 os.AddOrder(order1);

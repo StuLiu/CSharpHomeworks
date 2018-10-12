@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ordertest {
 
-    /// <summary>
-    /// OrderDetail class : a entry of an order object
-    /// to record the goods and its quantity
-    /// </summary>
+    /**
+     * OrderDetail class : a entry of an order object
+     * to record the goods, its quantity and so on.
+     **/
     class OrderDetail {
+
         /// <summary>
         /// OrderDetail constructor
         /// </summary>
@@ -22,6 +23,7 @@ namespace ordertest {
             Goods = goods;
             Quantity = quantity;
         }
+
         /// <summary>
         /// OrderDetail's id
         /// </summary>

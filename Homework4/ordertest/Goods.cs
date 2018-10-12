@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ordertest {
-    /// <summary>
-    /// Goods class:the message of goods
-    /// </summary>
+    /**
+     * Goods class:the message of goods
+     **/
     class Goods {
 
         private double goodsValue;

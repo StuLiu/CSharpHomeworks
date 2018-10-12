@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ordertest
 {
-    /// <summary>
-    /// Customer the man who orders goods.
-    /// </summary>
+    /**
+     * Customer the man who orders goods.
+     **/
     class Customer {
 
         /// <summary>
