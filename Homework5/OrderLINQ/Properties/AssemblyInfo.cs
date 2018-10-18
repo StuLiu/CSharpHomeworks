@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("orderLINQ")]
+[assembly: AssemblyTitle("OrderLINQ")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("orderLINQ")]
+[assembly: AssemblyProduct("OrderLINQ")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("509c9b2e-1ac8-4a44-a604-3a50bcd2a042")]
+[assembly: Guid("60f64398-198d-41ad-8269-1a38538e56c9")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
