@@ -24,13 +24,13 @@ namespace DrawTree
 
         private void draw_btn_Click(object sender, EventArgs e) {
             if (graphics != null) {
-                graphics.Clear(SystemColors.Control);
-                graphics.Dispose();
+                graphics.Clear(SystemColors.Control);   // 清除所画内容
+                graphics.Dispose();     // 释放绘画资源
             }
             graphics = CreateGraphics();
-            per1 = right_bar.Value / 100.0;
-            per2 = left_bar.Value / 100.0;
-            drawCayleyTree(10, 350, 460, 100, -Math.PI / 2);
+            per1 = right_bar.Value / 100.0; // 获得右侧滑动条比例（0.7-1.0）
+            per2 = left_bar.Value / 100.0;  // 获得左侧滑动条比例（0.7-1.0）
+            drawCayleyTree(10, 370, 460, 100, -Math.PI / 2);
         }
 
         private void drawCayleyTree(int n, 
@@ -44,8 +44,6 @@ namespace DrawTree
             double y2 = (y1 - y0) * 3 / 4 + y0;
 
             drawLine(x0, y0, x1, y1, n-1);
-
-
             drawCayleyTree(n - 1, x1, y1, per1 * leng, th + th1);
             drawCayleyTree(n - 1, x2, y2, per2 * leng, th - th2);
         }
@@ -53,7 +51,7 @@ namespace DrawTree
         private void drawLine(double x0, 
             double y0, double x1, double y1, int width) {
             graphics.DrawLine(
-                new Pen(Color.Green, width),
+                new Pen(Color.Green, width),    // 新建画笔对象，设置绘制风格
                 (int)x0, (int)y0, (int)x1, (int)y1);
         }
     }
