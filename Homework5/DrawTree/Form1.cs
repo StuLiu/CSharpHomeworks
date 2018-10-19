@@ -15,8 +15,8 @@ namespace DrawTree
         private Graphics graphics;
         private double th1 = 30 * Math.PI / 180;
         private double th2 = 20 * Math.PI / 180;
-        private double per1;
-        private double per2;
+        private double per1 = 0;
+        private double per2 = 0;
 
         public Form1() {
             InitializeComponent();
@@ -36,13 +36,10 @@ namespace DrawTree
         private void drawCayleyTree(int n, 
             double x0, double y0, double leng, double th) {
             if (n == 0) return;
-
             double x1 = x0 + leng * Math.Cos(th);
             double y1 = y0 + leng * Math.Sin(th);
-
             double x2 = (x1 - x0) * 3 / 4 + x0;
             double y2 = (y1 - y0) * 3 / 4 + y0;
-
             drawLine(x0, y0, x1, y1, n-1);
             drawCayleyTree(n - 1, x1, y1, per1 * leng, th + th1);
             drawCayleyTree(n - 1, x2, y2, per2 * leng, th - th2);
