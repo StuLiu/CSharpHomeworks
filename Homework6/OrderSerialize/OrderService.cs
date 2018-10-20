@@ -11,7 +11,7 @@ namespace ordertest {
      * like add order, remove order, query order and so on
      * 实现添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询)
      * */
-    class OrderService {
+    public class OrderService {
 
         // uint : orderId, Order : Order obj
         private Dictionary<uint, Order> orderDict;
