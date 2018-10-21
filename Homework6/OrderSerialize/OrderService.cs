@@ -106,7 +106,7 @@ namespace ordertest {
         /// <summary>
         /// Store the order object to file orders.xml
         /// </summary>
-        public void Export() {
+        public string Export() {
             DateTime time = System.DateTime.Now;
             string fileName = "orders_" + time.Year + "_" + time.Month 
                 + "_" + time.Day + "_" + time.Hour + "_" + time.Minute 
@@ -115,21 +115,35 @@ namespace ordertest {
             using (FileStream fs = new FileStream(fileName, FileMode.Create)) {
                 xs.Serialize(fs, Orders);
             }
+            return fileName;
         }
 
         /// <summary>
         /// import the orders object from xml file in path
+        /// return the order imported to service obj
         /// </summary>
         public List<Order> Import(string path) {
+            if (Path.GetExtension(path) != ".xml")
+                throw new ArgumentException("It isn't a xml file!");
             XmlSerializer xs = new XmlSerializer(typeof(List<Order>));
-            using (FileStream fs = new FileStream(path, FileMode.Open)) {
-                List<Order> result = (List<Order>)xs.Deserialize(fs);
-                result.ForEach(order => {
-                    if (!orderDict.Keys.Contains(order.OrderId))
-                        orderDict[order.OrderId] = order;
-                });
-                return result;
+            List<Order> result = new List<Order>();
+            try {
+                using (FileStream fs = new FileStream(path, FileMode.Open)) {
+                    List<Order> temp = (List<Order>)xs.Deserialize(fs);
+                    temp.ForEach(order => {
+                        if (!orderDict.Keys.Contains(order.OrderId)) {
+                            orderDict[order.OrderId] = order;
+                            result.Add(order);
+                        }  
+                    });
+                }
+            } catch (FileNotFoundException) {
+                throw new Exception("File not found!");
             }
+            catch (InvalidOperationException) {
+                throw new Exception("Xml file code error!");
+            }
+            return result;
         }
         /*other update function will write in the future.*/
     }
