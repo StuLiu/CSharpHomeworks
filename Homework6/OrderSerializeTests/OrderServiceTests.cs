@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Cryptography;
 
 namespace ordertest.Tests {
     [TestClass()]
@@ -129,45 +128,20 @@ namespace ordertest.Tests {
             os.AddOrder(order1);
             os.AddOrder(order2);
             os.AddOrder(order3);
-            string output = os.Export();
-            using (FileStream file1 = new FileStream(output, FileMode.Open), 
-                file2 = new FileStream("ordersTarget.xml", FileMode.Open)) {
-                HashAlgorithm hash = HashAlgorithm.Create();
-                // 哈希算法根据文本得到哈希码的字节数组 
-                byte[] hashByte1 = hash.ComputeHash(file1);
-                byte[] hashByte2 = hash.ComputeHash(file2);
-                // 将字节数组装换为字符串 
-                string str1 = BitConverter.ToString(hashByte1);
-                string str2 = BitConverter.ToString(hashByte2);
-                Assert.AreEqual(str1, str2);// 比较哈希码 
-            }
+            os.Export();
         }
 
         [TestMethod()]
         public void ImportTest() {
             init();
             OrderService os = new OrderService();
-            os.Import("./ordersTarget.xml");
+            os.Import("./orders.xml");
             Assert.AreEqual(os.Orders.Count, 3);
-
             try {
-                os.Import("./ordersErrorExtension.cpp");
-            } catch (Exception e) {
-                Assert.AreEqual(e.Message, "It isn't a xml file!");
-            }
-
-            try {
-                os.Import("./ordersNotExist.xml");
+                os.Import("./orders3.xml");
             }
             catch (Exception e) {
-                Assert.AreEqual(e.Message, "File not found!");
-            }
-
-            try {
-                os.Import("./ordersErrorContain.xml");
-            }
-            catch (Exception e) {
-                Assert.AreEqual(e.Message, "Xml file code error!");
+                Assert.IsInstanceOfType(e, typeof(FileNotFoundException));
             }
         }
     }
