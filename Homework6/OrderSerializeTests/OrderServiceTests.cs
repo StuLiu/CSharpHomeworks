@@ -7,25 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ordertest.Tests
-{
+namespace ordertest.Tests {
     [TestClass()]
-    public class OrderServiceTests
-    {
+    public class OrderServiceTests {
+
         private Customer customer1, customer2;
         private Goods milk, egg, apple;
         private OrderDetail orderDetails1, orderDetails2, orderDetails3;
         private Order order1, order2, order3;
 
-        private void init()
-        {
+        private void init() {
             customer1 = new Customer(1, "liuwang");
             customer2 = new Customer(2, "jams");
 
             apple = new Goods(3, "apple", 5.59);
             egg = new Goods(2, "egg", 4.99);
             milk = new Goods(1, "milk", 69.9);
-
 
             orderDetails1 = new OrderDetail(1, apple, 8);
             orderDetails2 = new OrderDetail(2, egg, 2);
@@ -46,12 +43,12 @@ namespace ordertest.Tests
         [TestMethod()]
         public void AddOrderTest() {
             init();
+            OrderService os = new OrderService();
+            os.AddOrder(order1);
+            os.AddOrder(order2);
+            os.AddOrder(order3);
+            Assert.AreEqual(os.Orders.Count, 3);
             try {
-                OrderService os = new OrderService();
-                os.AddOrder(order1);
-                os.AddOrder(order2);
-                os.AddOrder(order3);
-                Assert.AreEqual(os.Orders.Count, 3);
                 os.AddOrder(order3);
             } catch(Exception e) {
                 Assert.AreEqual(e.Message, "Order is already existed!");
@@ -84,8 +81,7 @@ namespace ordertest.Tests
         }
 
         [TestMethod()]
-        public void QueryOrdersByGoodsNameTest()
-        {
+        public void QueryOrdersByGoodsNameTest() {
             init();
             OrderService os = new OrderService();
             os.AddOrder(order1);
@@ -116,11 +112,11 @@ namespace ordertest.Tests
             os.AddOrder(order1);
             os.AddOrder(order2);
             os.AddOrder(order3);
+            os.UpdateOrderCustomer(2, customer1);
+            Assert.AreEqual(os.QueryOrdersByCustomerName("liuwang").Count, 2);
             try {
-                os.UpdateOrderCustomer(2, customer1);
-                Assert.AreEqual(os.QueryOrdersByCustomerName("liuwang").Count, 2);
                 os.UpdateOrderCustomer(100, customer1);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 Assert.AreEqual(e.Message, "Order is not existed!");
             }
         }
@@ -138,12 +134,13 @@ namespace ordertest.Tests
         [TestMethod()]
         public void ImportTest() {
             init();
+            OrderService os = new OrderService();
+            os.Import("./orders.xml");
+            Assert.AreEqual(os.Orders.Count, 3);
             try {
-                OrderService os = new OrderService();
-                os.Import("./orders.xml");
-                Assert.AreEqual(os.Orders.Count, 3);
                 os.Import("./orders3.xml");
-            } catch(Exception e) {
+            }
+            catch (Exception e) {
                 Assert.IsInstanceOfType(e, typeof(FileNotFoundException));
             }
         }
