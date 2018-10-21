@@ -37,7 +37,7 @@ namespace ordertest {
         /// <param name="order">the order will be added</param>
         public void AddOrder(Order order) {
             if (orderDict.ContainsKey(order.OrderId))
-                throw new Exception($"order-{order.OrderId} is already existed!");
+                throw new Exception("Order is already existed!");
             orderDict[order.OrderId] = order;
         }
 
@@ -99,14 +99,18 @@ namespace ordertest {
             if (orderDict.ContainsKey(orderId)) {
                 orderDict[orderId].Customer = newCustomer;
             } else {
-                throw new Exception($"order-{orderId} is not existed!");
+                throw new Exception("Order is not existed!");
             }
         }
 
         /// <summary>
         /// Store the order object to file orders.xml
         /// </summary>
-        public void Export(string fileName) {
+        public void Export() {
+            DateTime time = System.DateTime.Now;
+            string fileName = "orders_" + time.Year + "_" + time.Month 
+                + "_" + time.Day + "_" + time.Hour + "_" + time.Minute 
+                + "_" + time.Second + ".xml";
             XmlSerializer xs = new XmlSerializer(typeof(List<Order>));
             using (FileStream fs = new FileStream(fileName, FileMode.Create)) {
                 xs.Serialize(fs, Orders);
@@ -114,14 +118,16 @@ namespace ordertest {
         }
 
         /// <summary>
-        /// clear orderDict and import the orders object from path
+        /// import the orders object from xml file in path
         /// </summary>
         public List<Order> Import(string path) {
-            orderDict.Clear();
             XmlSerializer xs = new XmlSerializer(typeof(List<Order>));
             using (FileStream fs = new FileStream(path, FileMode.Open)) {
                 List<Order> result = (List<Order>)xs.Deserialize(fs);
-                result.ForEach(order => orderDict[order.OrderId] = order);
+                result.ForEach(order => {
+                    if (!orderDict.Keys.Contains(order.OrderId))
+                        orderDict[order.OrderId] = order;
+                });
                 return result;
             }
         }

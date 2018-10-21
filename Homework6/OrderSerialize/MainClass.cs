@@ -37,7 +37,7 @@ namespace ordertest {
                 os.AddOrder(order1);
                 os.AddOrder(order2);
                 os.AddOrder(order3);
-                os.Export("orders.xml");
+                os.Export();
 
                 Console.WriteLine("GetAllOrders");
                 List<Order> orders = os.Orders;
