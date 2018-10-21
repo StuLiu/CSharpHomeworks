@@ -139,8 +139,7 @@ namespace ordertest {
                 }
             } catch (FileNotFoundException) {
                 throw new Exception("File not found!");
-            }
-            catch (InvalidOperationException) {
+            } catch (InvalidOperationException) {
                 throw new Exception("Xml file code error!");
             }
             return result;
